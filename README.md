@@ -3,7 +3,7 @@
 Never release this due to not liking the reset style of tailwind.
 Should use the tailwind default markdown styles.
 
-## Sofware - Flashing
+## Software - Flashing
 
 ```bash
 sudo apt install rpi-imager
@@ -25,13 +25,13 @@ sudo apt install git # desktop does not need this
 git clone https://github.com/rpi-ws281x/rpi-ws281x-python
 ```
 
-Edit `sudo nano /etc/modprobe.d/snd-blacklist.conf` add the content below.
+Edit `sudo nano/vi /etc/modprobe.d/snd-blacklist.conf` add the content below.
 
 ```
 blacklist snd_bcm2835
 ```
 
-Edit `` and comment out the audio as noted below.
+Edit `sudo nano/vi /boot/config.txt` and comment out the audio as noted below.
 
 ```
 # Enable audio (loads snd_bcm2835)
@@ -39,7 +39,18 @@ Edit `` and comment out the audio as noted below.
 ```
 
 ```bash
-sudo reboot # reboot to take effect
+sudo reboot # reboot for audio disable to take effect
+```
+
+```bash
+cd rpi-ws281x-python/examples
+sudo python3 strandtest -c # update LED_COUNT in code to 300
+```
+
+To run the script automatically on start-up do the following.
+
+```text title="/etc/rc.local"
+sudo python3 /home/carltonj2000/rpi-ws281x-python/examples/strandtest.py &
 ```
 
 The details above are from the following links.
